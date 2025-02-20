@@ -38,7 +38,7 @@ async function bootstrap() {
     transport: Transport.RMQ,
     options: {
       urls: [RABBITMQ_URL],
-      queue: 'order_queue',
+      queue: 'product_queue',
       queueOptions: {
         durable: false,
       },

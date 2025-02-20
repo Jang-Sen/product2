@@ -28,4 +28,19 @@ export class ProductService {
 
     return product;
   }
+
+  // 제품 수량 감소
+  async isProductInStock(id: string, quantity: number): Promise<Product> {
+    const product = await this.repository.findOneBy({ id });
+
+    if (!product) {
+      throw new NotFoundException('제품이 존재하지 않습니다.');
+    }
+
+    product.stock -= quantity;
+
+    // stock이 quantity보다 적거나 재고가 없을 경우 핸들링
+
+    return await this.repository.save(product);
+  }
 }
